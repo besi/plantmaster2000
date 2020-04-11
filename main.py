@@ -1,5 +1,12 @@
 import machine
-ow = machine.Onewire(4)
-ds0 = machine.Onewire.ds18x20(ow, 0)
-temp = ds0.convert_read()
-print(temp)
+import utime
+
+one_wire_pin = 4
+
+one_wire = machine.Onewire(one_wire_pin)
+temp_sensor = machine.Onewire.ds18x20(one_wire, 0)
+
+while True:
+    temp = temp_sensor.convert_read()
+    print(temp)
+    utime.sleep(5)
